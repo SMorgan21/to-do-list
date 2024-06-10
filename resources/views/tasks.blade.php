@@ -22,12 +22,30 @@
     </div>
     <div class="row">
         <div class="col-xs-4">
-            <input class="form-control task-input" placeholder="Insert Task Name">
-            <br>
-            <button class="btn btn-primary form-control">Add</button>
+            <form action="" method="post">
+                <input class="form-control task-input" placeholder="Insert Task Name">
+                <br>
+                <button class="btn btn-primary form-control">Add</button>
+            </form>
         </div>
-        <div class="col-xs-8">
-            <textarea class="form-control mt-2" rows="10"></textarea>
+        <div class="col-xs-8 table_style">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Task</th>
+                </tr>
+                </thead>
+                <tbody>
+{{--                @foreach ($tasks as $task)--}}
+{{--                    <tr>--}}
+{{--                        <td>{{ $loop->iteration }}</td>--}}
+{{--                        <td>{{ $task->name }}</td>--}}
+{{--                        <td>{{ $task->is_complete ? 'Completed' : 'Not Completed' }}</td>--}}
+{{--                    </tr>--}}
+{{--                @endforeach--}}
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
