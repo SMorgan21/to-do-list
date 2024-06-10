@@ -22,10 +22,11 @@
     </div>
     <div class="row">
         <div class="col-xs-4">
-            <form action="" method="post">
-                <input class="form-control task-input" placeholder="Insert Task Name">
+            <form action="{{route('store.task')}}" method="post">
+                @csrf
+                <input class="form-control task-input" name="name" placeholder="Insert Task Name">
                 <br>
-                <button class="btn btn-primary form-control">Add</button>
+                <button class="btn btn-primary form-control" type="submit">Add</button>
             </form>
         </div>
         <div class="col-xs-8 table_style">
@@ -37,13 +38,13 @@
                 </tr>
                 </thead>
                 <tbody>
-{{--                @foreach ($tasks as $task)--}}
-{{--                    <tr>--}}
-{{--                        <td>{{ $loop->iteration }}</td>--}}
-{{--                        <td>{{ $task->name }}</td>--}}
-{{--                        <td>{{ $task->is_complete ? 'Completed' : 'Not Completed' }}</td>--}}
-{{--                    </tr>--}}
-{{--                @endforeach--}}
+                @foreach ($tasks as $task)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $task->name }}</td>
+                        <td>{{ $task->is_complete ? 'Completed' : 'Not Completed' }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
