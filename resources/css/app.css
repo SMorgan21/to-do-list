@@ -1,0 +1,15 @@
+
+/*** Front Page ***/
+body {
+    background-color: #f1f1f1;
+}
+
+.logo_padding {
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+}
+
+.task-input {
+    padding-bottom: 1rem;
+}
+

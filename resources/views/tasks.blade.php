@@ -9,10 +9,29 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <div class="container">
-
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <a href="#">
+                <img class="img-fluid logo_padding" src="{{asset('assets/logo.png')}}" alt="mlp_logo">
+            </a>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <input class="form-control task-input" placeholder="Insert Task Name">
+            <br>
+            <button class="btn btn-primary form-control">Add</button>
+        </div>
+        <div class="col-xs-8">
+            <textarea class="form-control mt-2" rows="10"></textarea>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>
