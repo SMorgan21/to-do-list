@@ -9,6 +9,9 @@
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
@@ -41,16 +44,32 @@
                 @foreach ($tasks as $task)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $task->name }}</td>
-                        <td>{{ $task->is_complete ? 'Completed' : 'Not Completed' }}</td>
+                        <td>{!! $task->is_complete ? "<del>$task->name</del>" : $task->name !!}</td>
+                        <td style="overflow: auto;">
+                            <form action="{{route('delete.task', $task->id)}}" method="post" style="float: right; margin: 0.5rem;">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger" type="submit">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </form>
+                            <form action="{{route('update.task', $task->id)}}" method="post" style="float: right; margin: 0.5rem;">
+                                @csrf
+                                @method('PATCH')
+                                <button class="btn btn-success" type="submit">
+                                    <i class="fas fa-check"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="col-xs-12 text-center copy_right">
+        <p>Copyright &copy; {{ date('Y') }} All Rights Reserved.</p>
+    </div>
 </div>
-
-
 </body>
 </html>
