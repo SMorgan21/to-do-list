@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MLP To-Do</title>
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -27,7 +24,7 @@
         <div class="col-xs-4">
             <form action="{{route('store.task')}}" method="post">
                 @csrf
-                <input class="form-control task-input" name="name" placeholder="Insert Task Name">
+                <input class="form-control task-input" name="name" placeholder="Insert Task Name" required>
                 <br>
                 <button class="btn btn-primary form-control" type="submit">Add</button>
             </form>
