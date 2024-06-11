@@ -12,8 +12,5 @@ class Tasks extends Model
     /**
      * @var string[]
      */
-    protected $fillable = [
-        'name',
-        'is_complete',
-    ];
+    protected $guarded = [];
 }

@@ -14,15 +14,23 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col">
+        <div class="col-xs-6">
             <a href="#">
                 <img class="img-fluid logo_padding" src="{{asset('assets/logo.png')}}" alt="mlp_logo">
             </a>
         </div>
+        @foreach (['success_message', 'error_message'] as $message)
+            @if(session($message))
+                <div class="col-xs-3 col-xs-offset-3 text-center flash_alert">
+                    <div class="alert {{ $message == 'success_message' ? 'alert-success' : 'alert-danger' }} "> {{ session($message) }}</div>
+                </div>
+            @endif
+        @endforeach
+
     </div>
     <div class="row">
         <div class="col-xs-4">
-            <form action="{{route('store.task')}}" method="post">
+            <form action="{{route('task.store')}}" method="post">
                 @csrf
                 <input class="form-control task-input" name="name" placeholder="Insert Task Name" required>
                 <br>
@@ -38,28 +46,34 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($tasks as $task)
+                @if(count($tasks) > 0)
+                    @foreach ($tasks as $task)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{!! $task->is_complete ? "<del>$task->name</del>" : $task->name !!}</td>
+                            <td style="overflow: auto;">
+                                <form action="{{route('task.delete', $task->id)}}" method="post" style="float: right; margin: 0.5rem;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger" type="submit">
+                                        <i class="fas fa-times"></i>
+                                    </button>
+                                </form>
+                                <form action="{{route('task.update', $task->id)}}" method="post" style="float: right; margin: 0.5rem;">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button class="btn btn-success" type="submit">
+                                        <i class="fas fa-check"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                @else
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{!! $task->is_complete ? "<del>$task->name</del>" : $task->name !!}</td>
-                        <td style="overflow: auto;">
-                            <form action="{{route('delete.task', $task->id)}}" method="post" style="float: right; margin: 0.5rem;">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger" type="submit">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </form>
-                            <form action="{{route('update.task', $task->id)}}" method="post" style="float: right; margin: 0.5rem;">
-                                @csrf
-                                @method('PATCH')
-                                <button class="btn btn-success" type="submit">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                            </form>
-                        </td>
+                        <td colspan="2">No tasks</td>
                     </tr>
-                @endforeach
+                @endif
                 </tbody>
             </table>
         </div>
